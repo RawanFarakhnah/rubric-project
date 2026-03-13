@@ -21,6 +21,7 @@ export default [
       globals: {
         ...globals.node,
         ...globals.jasmine,
+        ...globals.express,
       },
     },
     plugins: {

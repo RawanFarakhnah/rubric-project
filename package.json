@@ -8,19 +8,21 @@
     "dev": "node build/index.js",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
     "jasmine": "jasmine",
     "test": "npm run build && npm run jasmine"
   },
   "keywords": [],
-  "author": "",
+  "author": "rawan farakhna",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/jasmine": "^6.0.0",
     "@types/morgan": "^1.9.10",
     "@types/node": "^20.19.37",
     "@types/nodemon": "^1.19.6",
+    "@types/serve-favicon": "^2.5.7",
     "@types/supertest": "^7.2.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
@@ -28,17 +30,18 @@
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.4.0",
+    "jasmine": "^6.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "nodemon": "^3.1.14",
     "prettier": "^3.8.1",
+    "supertest": "^7.2.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "express": "^5.2.1",
-    "jasmine": "^6.1.0",
-    "jasmine-spec-reporter": "^7.0.0",
     "morgan": "^1.10.1",
-    "nodemon": "^3.1.14",
     "serve-favicon": "^2.5.1",
-    "supertest": "^7.2.2"
+    "sharp": "^0.34.5"
   }
 }
