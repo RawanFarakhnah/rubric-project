@@ -1,4 +1,6 @@
 import express from 'express';
+import imageUtils from '../../utilities/images';
+
 const images = express.Router();
 
 interface ImageQuery {
@@ -7,7 +9,7 @@ interface ImageQuery {
   height: string;
 }
 
-images.get('/', (req, res) => {
+images.get('/', async (req, res) => {
   const { filename, width, height } = req.query as unknown as ImageQuery;
 
   if (!filename) {
@@ -25,16 +27,23 @@ images.get('/', (req, res) => {
   const widthNum = parseInt(width);
   const heightNum = parseInt(height);
 
-  if (isNaN(widthNum) || isNaN(heightNum)) {
-    return res.status(400).send('width and height must be numbers');
+  if (isNaN(widthNum) || isNaN(heightNum) || widthNum <= 0 || heightNum <= 0) {
+    return res
+      .status(400)
+      .send('width and height are required and must be positive numbers');
   }
 
-  res.status(200).json({
-    filename,
-    width: widthNum,
-    height: heightNum,
-    message: 'Image processing in progress',
-  });
+  try {
+    const thumbImage = await imageUtils.resizingImage(
+      filename,
+      widthNum,
+      heightNum,
+    );
+
+    return res.status(200).sendFile(thumbImage);
+  } catch {
+    return res.status(404).send('image not found');
+  }
 });
 
 export default images;

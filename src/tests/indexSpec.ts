@@ -26,11 +26,18 @@ describe('API Endpoint Tests', () => {
       expect(response.status).toBe(400);
     });
 
-    it('should return 200 with valid query', async () => {
+    it('should return 200 with valid image', async () => {
       const response = await request.get(
-        '/api/images?filename=test&width=200&height=200'
+        '/api/images?filename=encenadaport&width=200&height=200',
       );
       expect(response.status).toBe(200);
+    });
+
+    it('should return 404 for not found image', async () => {
+      const response = await request.get(
+        '/api/images?filename=test&width=200&height=200',
+      );
+      expect(response.status).toBe(404);
     });
   });
 });
